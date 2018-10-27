@@ -4,7 +4,7 @@ RUN apk add --no-cache python3 && \
     pip3 install --upgrade pip setuptools && \
     pip3 install pipenv
 
-WORKDIR /exporter
+WORKDIR /app
 
 ONBUILD COPY Pipfile Pipfile
 ONBUILD COPY Pipfile.lock Pipfile.lock
