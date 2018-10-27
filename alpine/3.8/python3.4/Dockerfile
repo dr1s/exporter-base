@@ -1,4 +1,4 @@
-FROM alpine:3.8
+FROM python:3.4-alpine3.8
 
 ENV LC_ALL C.UTF-8
 ENV LANG C.UTF-8
