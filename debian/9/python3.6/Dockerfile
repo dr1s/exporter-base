@@ -7,6 +7,9 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN pip install --upgrade pip setuptools pipenv && \
     pip install pipenv
 
+RUN useradd --create-home --home-dir /app pipenv
+USER pipenv
+
 WORKDIR /app
 
 ONBUILD COPY Pipfile Pipfile

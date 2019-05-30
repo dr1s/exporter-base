@@ -7,6 +7,9 @@ RUN apk add --no-cache python3 && \
     pip3 install --upgrade pip setuptools && \
     pip3 install pipenv
 
+RUN useradd --create-home --home-dir /app pipenv
+USER pipenv
+
 WORKDIR /app
 
 ONBUILD COPY Pipfile Pipfile

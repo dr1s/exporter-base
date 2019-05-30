@@ -6,6 +6,9 @@ ENV LANG C.UTF-8
 RUN pip install --upgrade pip setuptools && \
     pip install pipenv
 
+RUN useradd --create-home --home-dir /app pipenv
+USER pipenv
+
 WORKDIR /app
 
 ONBUILD COPY Pipfile Pipfile
