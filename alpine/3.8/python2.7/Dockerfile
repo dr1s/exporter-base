@@ -10,21 +10,21 @@ ENV WORKDIR=/app
 RUN pip install --upgrade pip setuptools && \
     pip install pipenv
 
-RUN addgroup --system --gid "$GID" "$USER" \
-    && adduser \
-    --disabled-password \
-    --gecos "" \
-    --home "$WORKDIR" \
-    --ingroup "$USER" \
-    --no-create-home \
-    --uid "$UID" \
-    --system "$USER"
-
-USER "$USER"
-
 WORKDIR "$WORKDIR"
 
 ONBUILD COPY Pipfile Pipfile
 ONBUILD COPY Pipfile.lock Pipfile.lock
 
 ONBUILD RUN set -ex && pipenv install --deploy --system
+
+ONBUILD RUN addgroup --system --gid "$GID" "$USER" \
+            && adduser \
+            --disabled-password \
+            --gecos "" \
+            --home "$WORKDIR" \
+            --ingroup "$USER" \
+            --no-create-home \
+            --uid "$UID" \
+            --system "$USER"
+
+ONBUILD USER "$USER"
